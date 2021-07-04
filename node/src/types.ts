@@ -7,6 +7,14 @@ export interface Request<T> extends ExpressRequest {
     body: T;
 }
 
+export interface ClientBody {
+    command: number;
+}
+
+export interface ClientResult {
+    stateMachine: number[];
+}
+
 export interface LogEntry {
     command: number;
     term: number;

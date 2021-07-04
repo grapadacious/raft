@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 import { address } from './meta';
-import { Mode } from './mode';
+import { becomeLeader } from './mode';
 import network from './network';
-import state from './state';
 import { retry } from './util';
 
 const registrationHost = process.env.REGISTRATION_HOST || '';
@@ -38,8 +37,7 @@ export async function joinNetwork(): Promise<void> {
     const nodes = await register();
 
     if (nodes.length === 1) {
-        console.log('First node - becoming leader');
-        state.mode = Mode.LEADER;
+        becomeLeader();
     }
 
     network.addNodes(nodes);
