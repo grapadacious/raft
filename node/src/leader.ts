@@ -90,6 +90,7 @@ function _checkCommits() {
 
     if (state.log[majorityIndex].term !== state.currentTerm) return;
 
+    console.log(`Consensus reached to index ${majorityIndex}. Updating commit index.`);
     state.commitIndex = majorityIndex;
 }
 
@@ -101,8 +102,14 @@ async function sendHeartbeat() {
     }
 }
 
+function addNetworkNode(node: string) {
+    leaderState.matchIndex[node] = 0;
+    leaderState.nextIndex[node] = leaderState.matchIndex[node] + 1;
+}
+
 export default {
     handleClientRequest,
     initialize,
-    sendHeartbeat
+    sendHeartbeat,
+    addNetworkNode
 }

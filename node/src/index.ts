@@ -3,7 +3,7 @@ import express from 'express';
 import follower from './follower';
 import leader from './leader';
 import network from './network';
-import { address, host, port } from './meta';
+import { address, port } from './meta';
 import { joinNetwork } from './registration';
 import { Announce, Append, ClientBody, ClientResult, Request } from './types';
 import state from './state';
@@ -35,6 +35,10 @@ app.post('/', async (req: Request<ClientBody>, res) => {
 
 app.post('/announce', async (req: Request<Announce>, res) => {
     const { node } = req.body;
+
+    if (state.leader === address) {
+        leader.addNetworkNode(node);
+    }
 
     network.addNode(node);
 
