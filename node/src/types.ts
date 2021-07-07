@@ -1,6 +1,5 @@
 import {
-    Request as ExpressRequest,
-    Response as ExpressResponse
+    Request as ExpressRequest
 } from 'express';
 
 export interface Request<T> extends ExpressRequest {
@@ -40,4 +39,16 @@ export interface Append {
 export interface AppendResult {
     term: number;
     success: boolean;
+}
+
+export interface RequestVote {
+    term: number;
+    candidate: string;
+    lastLogIndex: number;
+    lastLogTerm: number;
+}
+
+export interface RequestVoteResult {
+    term: number;
+    voteGranted: boolean;
 }

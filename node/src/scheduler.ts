@@ -1,5 +1,8 @@
 import { randomInt } from 'crypto';
+import election from './election';
+
 import leader from './leader';
+import state from './state';
 
 class Scheduler {
     private _electionTimer: NodeJS.Timeout | null;
@@ -39,8 +42,9 @@ class Scheduler {
 
         this.clearElectionTimer();
 
-        this._electionTimer = setTimeout(() => {
-
+        this._electionTimer = setTimeout(async () => {
+            await election.start();
+            this.resetElectionTimer();
         }, duration);
     }
 

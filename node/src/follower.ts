@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { becomeFollower } from './mode';
 import scheduler from './scheduler';
 import state from './state';

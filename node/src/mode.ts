@@ -6,7 +6,7 @@ import state from './state';
 export function becomeLeader() {
     if (state.mode === 'leader') return;
 
-    console.log('becoming leader');
+    console.log('Becoming leader');
 
     state.mode = 'leader';
 
@@ -22,7 +22,7 @@ export function becomeLeader() {
 export function becomeFollower() {
     if (state.mode === 'follower') return;
 
-    console.log('becoming follower');
+    console.log('Becoming follower');
 
     state.mode = 'follower';
 

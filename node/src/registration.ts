@@ -3,6 +3,7 @@ import axios from 'axios';
 import { address } from './meta';
 import { becomeLeader } from './mode';
 import network from './network';
+import scheduler from './scheduler';
 import { retry } from './util';
 
 const registrationHost = process.env.REGISTRATION_HOST || '';
@@ -36,11 +37,9 @@ export async function joinNetwork(): Promise<void> {
 
     const nodes = await register();
 
-    if (nodes.length === 1) {
-        becomeLeader();
-    }
-
     network.addNodes(nodes);
 
     await announce(nodes);
+
+    scheduler.resetElectionTimer();
 }

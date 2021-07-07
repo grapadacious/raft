@@ -1,11 +1,19 @@
 import express from 'express';
 
+import election from './election';
 import follower from './follower';
 import leader from './leader';
 import network from './network';
 import { address, port } from './meta';
 import { joinNetwork } from './registration';
-import { Announce, Append, ClientBody, ClientResult, Request } from './types';
+import {
+    Announce,
+    Append,
+    ClientBody,
+    ClientResult,
+    Request,
+    RequestVote
+} from './types';
 import state from './state';
 import axios from 'axios';
 
@@ -47,6 +55,12 @@ app.post('/announce', async (req: Request<Announce>, res) => {
 
 app.post('/append', async (req: Request<Append>, res) => {
     const result = await follower.handleAppendRequest(req.body);
+
+    res.send(result);
+});
+
+app.post('/request-vote', async (req: Request<RequestVote>, res) => {
+    const result = await election.handleVoteRequest(req.body);
 
     res.send(result);
 });
