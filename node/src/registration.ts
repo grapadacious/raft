@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { address } from './meta';
-import { becomeLeader } from './mode';
 import network from './network';
 import scheduler from './scheduler';
 import { retry } from './util';

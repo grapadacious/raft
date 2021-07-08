@@ -1,8 +1,7 @@
 import { randomInt } from 'crypto';
-import election from './election';
 
+import election from './election';
 import leader from './leader';
-import state from './state';
 
 class Scheduler {
     private _electionTimer: NodeJS.Timeout | null;
