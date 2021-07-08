@@ -1,6 +1,6 @@
 import axios from "axios";
 import { address } from "./meta";
-import { becomeLeader } from "./mode";
+import { becomeFollower, becomeLeader } from "./mode";
 import network from "./network";
 import state from "./state";
 import { RequestVoteResult } from "./types";
@@ -32,6 +32,7 @@ async function requestVotes() {
             votes += 1;
         } else if (result.term > state.currentTerm) {
             state.currentTerm = result.term;
+            becomeFollower();
             return;
         }
 
