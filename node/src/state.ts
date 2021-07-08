@@ -41,6 +41,8 @@ class State {
 
             this.stateMachine.push(command);
         }
+
+        console.log(`Updated state machine: [${this.stateMachine.join(', ')}]`);
     }
 }
 
